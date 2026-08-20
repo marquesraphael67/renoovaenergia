@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Renoova Energia — soluções em energia solar para residências, empresas e agronegócio." />
+  <title>Renoova Energia | Energia solar inteligente</title>
+  <style>
+    :root{
+      --green:#19b76b;
+      --green-dark:#0d6d47;
+      --green-900:#082b20;
+      --lime:#d8ef53;
+      --yellow:#f5d64e;
+      --ink:#10221b;
+      --muted:#66736e;
+      --white:#ffffff;
+      --soft:#f3f8f5;
+      --soft-2:#eaf4ee;
+      --line:rgba(16,34,27,.10);
+      --shadow:0 24px 60px rgba(7,35,25,.14);
+      --radius:28px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color:var(--ink);
+      background:#fff;
+      line-height:1.5;
+      overflow-x:hidden;
+      -webkit-font-smoothing:antialiased;
+      text-rendering:optimizeLegibility;
+    }
+    ::selection{background:var(--lime);color:var(--green-900)}
+    .scroll-progress{position:fixed;top:0;left:0;width:0;height:3px;background:linear-gradient(90deg,var(--green),var(--lime));z-index:120;box-shadow:0 0 18px rgba(216,239,83,.55);transition:width .08s linear}
+    .reveal{opacity:0;transform:translateY(34px);transition:opacity .72s cubic-bezier(.2,.8,.2,1),transform .72s cubic-bezier(.2,.8,.2,1)}
+    .reveal.reveal-left{transform:translateX(-40px)}
+    .reveal.reveal-right{transform:translateX(40px)}
+    .reveal.visible{opacity:1;transform:none}
+    .reveal-delay-1{transition-delay:.08s}.reveal-delay-2{transition-delay:.16s}.reveal-delay-3{transition-delay:.24s}
+
+    a{color:inherit;text-decoration:none}
+    button,input,select{font:inherit}
+    img{display:block;width:100%;max-width:100%;image-rendering:auto}
+    .container{width:min(calc(100% - 40px),var(--max));margin-inline:auto}
+
+    /* Header */
+    .topbar{
+      background:var(--green-900);
+      color:#dff7ea;
+      font-size:13px;
+    }
+    .topbar .container{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      padding:9px 0;
+      align-items:center;
+    }
+    .topbar span{opacity:.9}
+    .nav-shell{
+      position:sticky;
+      top:0;
+      z-index:50;
+      background:rgba(255,255,255,.86);
+      backdrop-filter:blur(18px) saturate(145%);
+      -webkit-backdrop-filter:blur(18px) saturate(145%);
+      border-bottom:1px solid rgba(16,34,27,.06);
+      transition:box-shadow .25s ease,background .25s ease;
+    }
+    .nav-shell.scrolled{background:rgba(255,255,255,.95);box-shadow:0 12px 30px rgba(7,35,25,.08)}
+
+    nav{
+      min-height:78px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:30px;
+    }
+    .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em;font-size:23px}
+    .brand-logo-wrap{
+      width:148px;height:52px;border-radius:14px;
+      display:flex;align-items:center;justify-content:center;
+      overflow:hidden;background:#fff;border:1px dashed rgba(13,109,71,.28);
+      padding:6px 10px;position:relative;flex:0 0 auto;
+    }
+    .brand-logo{width:100%;height:100%;object-fit:contain}
+    .brand-logo-fallback{font-size:10px;line-height:1.15;text-align:center;color:var(--green-dark);font-weight:900;letter-spacing:.04em}
+    .brand-mark{
+      width:42px;height:42px;border-radius:14px;
+      display:grid;place-items:center;
+      background:linear-gradient(135deg,var(--green),var(--lime));
+      box-shadow:0 10px 24px rgba(25,183,107,.25);
+    }
+    .brand-mark svg{width:26px;height:26px;fill:none;stroke:#062619;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+    .brand strong{color:var(--green-dark)}
+    .brand-name{white-space:nowrap}
+    .social-links{display:flex;align-items:center;gap:8px}
+    .social-btn{
+      width:42px;height:42px;border-radius:13px;display:grid;place-items:center;
+      border:1px solid var(--line);background:#fff;color:var(--green-dark);
+      transition:.2s ease;box-shadow:0 8px 20px rgba(7,35,25,.05)
+    }
+    .social-btn:hover{transform:translateY(-2px);border-color:rgba(25,183,107,.38);box-shadow:0 12px 26px rgba(7,35,25,.10)}
+    .social-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+    .social-btn.instagram:hover{color:#c13584}
+    .social-btn.whatsapp:hover{color:#128c7e}
+    .social-btn.email:hover{color:#0d6d47}
+    .nav-links{display:flex;align-items:center;gap:26px;font-weight:700;font-size:14px;color:#2b3c35}
+    .nav-links a{position:relative}
+    .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:.2s}
+    .nav-links a:hover::after{transform:scaleX(1)}
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      border:0;
+      padding:14px 20px;
+      border-radius:999px;
+      font-weight:800;
+      cursor:pointer;
+      transition:.22s ease;
+    }
+    .btn-primary{background:var(--green);color:#fff;box-shadow:0 12px 24px rgba(25,183,107,.24);position:relative;overflow:hidden}
+    .btn-primary::after{content:"";position:absolute;top:-40%;left:-55%;width:38%;height:180%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.28),transparent);transform:rotate(16deg);transition:left .55s ease}
+    .btn-primary:hover::after{left:120%}
+    .btn-primary:hover{transform:translateY(-2px);background:#13a961}
+    .btn-dark{background:var(--ink);color:#fff}
+    .btn-outline{border:1px solid rgba(255,255,255,.32);color:#fff;background:rgba(255,255,255,.06)}
+    .menu-btn{display:none;width:46px;height:46px;border-radius:14px;border:1px solid var(--line);background:#fff;cursor:pointer;position:relative;box-shadow:0 8px 20px rgba(7,35,25,.05)}
+    .menu-btn span{display:block;width:20px;height:2px;background:var(--ink);margin:4px auto;border-radius:2px;transition:.25s ease}
+    .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+    .menu-btn.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+    .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+
+
+    /* Hero */
+    .hero{
+      min-height:690px;
+      color:#fff;
+      position:relative;
+      overflow:hidden;
+      background:
+        linear-gradient(90deg, rgba(4,28,20,.58) 0%, rgba(4,28,20,.42) 44%, rgba(4,28,20,.16) 74%, rgba(4,28,20,.08) 100%),
+        url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=3200&q=100') center/cover no-repeat;
+    }
+    .hero::after{
+      content:"";position:absolute;inset:auto -120px -180px auto;width:520px;height:520px;border-radius:50%;
+      background:radial-gradient(circle,rgba(216,239,83,.35),rgba(216,239,83,0) 68%);
+    }
+    .hero::before{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:46px 46px;mask-image:linear-gradient(to bottom,rgba(0,0,0,.38),transparent 82%);pointer-events:none}
+    .hero-ambient{position:absolute;inset:0;pointer-events:none;z-index:1;overflow:hidden}
+    .energy-orb{position:absolute;border-radius:50%;filter:blur(2px);opacity:.72;animation:floatOrb 7s ease-in-out infinite}
+    .energy-orb.one{width:150px;height:150px;right:9%;top:14%;background:radial-gradient(circle at 35% 35%,rgba(216,239,83,.75),rgba(25,183,107,.14) 52%,transparent 70%)}
+    .energy-orb.two{width:80px;height:80px;right:33%;top:56%;background:radial-gradient(circle,rgba(255,255,255,.28),rgba(216,239,83,.08) 58%,transparent 72%);animation-delay:-2s}
+    .energy-ring{position:absolute;width:330px;height:330px;right:4%;top:24%;border-radius:50%;border:1px solid rgba(216,239,83,.23);animation:spinSlow 24s linear infinite}
+    .energy-ring::before,.energy-ring::after{content:"";position:absolute;border-radius:50%;border:1px dashed rgba(255,255,255,.18)}
+    .energy-ring::before{inset:38px}.energy-ring::after{inset:82px}
+    .scroll-cue{position:absolute;left:50%;bottom:106px;z-index:5;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.64);font-size:10px;text-transform:uppercase;letter-spacing:.15em;font-weight:850}
+    .scroll-cue i{display:block;width:26px;height:40px;border:1px solid rgba(255,255,255,.42);border-radius:999px;position:relative}
+    .scroll-cue i::after{content:"";position:absolute;width:4px;height:7px;border-radius:99px;background:var(--lime);left:50%;top:8px;transform:translateX(-50%);animation:scrollDot 1.8s ease-in-out infinite}
+    @keyframes floatOrb{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-18px,0) scale(1.04)}}
+    @keyframes spinSlow{to{transform:rotate(360deg)}}
+    @keyframes scrollDot{0%{opacity:0;transform:translate(-50%,0)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,15px)}}
+    .hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .8fr;align-items:center;min-height:690px}
+    .hero-copy{padding:78px 0 110px;max-width:700px}
+    .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.16em;color:var(--lime)}
+    .eyebrow::before{content:"";width:28px;height:2px;background:currentColor}
+    h1,h2,h3,p{margin-top:0}
+    h1{font-size:clamp(48px,7vw,86px);line-height:.95;letter-spacing:-.06em;margin:22px 0 24px;max-width:850px}
+    h1 span{color:var(--lime)}
+    .hero-copy p{font-size:19px;line-height:1.65;max-width:600px;color:rgba(255,255,255,.84);margin-bottom:32px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-note{display:flex;gap:18px;align-items:center;margin-top:34px;color:rgba(255,255,255,.78);font-size:13px;font-weight:700}
+    .hero-note b{color:#fff}
+    .hero-card{
+      justify-self:end;
+      width:min(420px,100%);
+      background:rgba(255,255,255,.11);
+      border:1px solid rgba(255,255,255,.20);
+      border-radius:32px;
+      padding:26px;
+      backdrop-filter:blur(16px);
+      box-shadow:0 30px 80px rgba(0,0,0,.22);
+      animation:heroCardFloat 5.5s ease-in-out infinite;
+    }
+    @keyframes heroCardFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+    .hero-card .mini{font-size:12px;text-transform:uppercase;letter-spacing:.14em;color:#d5f4df;font-weight:900}
+    .hero-card h3{font-size:27px;margin:8px 0 18px;letter-spacing:-.03em}
+    .quick-form{display:grid;gap:12px}
+    .quick-form label{font-size:12px;font-weight:800;color:#e9fff0}
+    .quick-form input,.quick-form select{
+      width:100%;border:1px solid rgba(255,255,255,.22);border-radius:16px;padding:14px 15px;background:rgba(255,255,255,.94);color:var(--ink);outline:none
+    }
+    .quick-form input:focus,.quick-form select:focus{box-shadow:0 0 0 4px rgba(216,239,83,.18)}
+    .quick-form .btn{width:100%;border-radius:16px}
+    .stats-strip{
+      position:absolute;left:0;right:0;bottom:0;z-index:3;
+      background:rgba(7,42,31,.88);border-top:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px)
+    }
+    .stats{display:grid;grid-template-columns:repeat(4,1fr)}
+    .stat{padding:22px 26px;border-right:1px solid rgba(255,255,255,.11)}
+    .stat:last-child{border-right:0}
+    .stat strong{display:block;font-size:26px;letter-spacing:-.04em}
+    .stat span{display:block;color:rgba(255,255,255,.66);font-size:12px;margin-top:3px}
+
+    /* Sections */
+    section{padding:110px 0}
+    .section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:46px}
+    .section-head .copy{max-width:640px}
+    .kicker{color:var(--green-dark);text-transform:uppercase;letter-spacing:.14em;font-size:12px;font-weight:900;margin-bottom:12px}
+    h2{font-size:clamp(36px,5vw,58px);line-height:1.02;letter-spacing:-.055em;margin-bottom:16px}
+    .section-head p,.lead{font-size:17px;color:var(--muted);line-height:1.7}
+
+    /* About */
+    .about{background:var(--soft)}
+    .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;align-items:center}
+    .about-media{position:relative;min-height:520px}
+    .photo-card{position:absolute;inset:0 45px 30px 0;border-radius:36px;overflow:hidden;box-shadow:var(--shadow)}
+    .photo-card img{height:100%;object-fit:cover}
+    .float-card{position:absolute;right:0;bottom:0;background:#fff;border-radius:24px;padding:24px;width:220px;box-shadow:var(--shadow);border:1px solid var(--line)}
+    .float-card strong{display:block;font-size:34px;color:var(--green-dark);letter-spacing:-.05em}
+    .float-card span{font-size:13px;color:var(--muted)}
+    .about-copy .lead{margin-bottom:26px}
+    .checks{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:28px 0 32px}
+    .check{display:flex;gap:10px;font-weight:750;font-size:14px;align-items:center}
+    .check i{width:24px;height:24px;border-radius:50%;background:#dff6e9;display:grid;place-items:center;color:var(--green-dark);font-style:normal;font-weight:900}
+
+    /* Services */
+    .services-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+    .service-card{position:relative;min-height:380px;border-radius:28px;overflow:hidden;color:#fff;padding:28px;display:flex;flex-direction:column;justify-content:flex-end;box-shadow:0 16px 50px rgba(7,35,25,.13);isolation:isolate}
+    .service-card::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(3,25,17,.08),rgba(3,25,17,.92));z-index:-1}
+    .service-card::after{content:"";position:absolute;inset:0;z-index:-2;background-size:cover;background-position:center;transition:transform .45s ease}
+    .service-card:hover::after{transform:scale(1.06)}
+    .service-card{transition:transform .35s ease,box-shadow .35s ease}
+    .service-card:hover{transform:translateY(-7px);box-shadow:0 24px 64px rgba(7,35,25,.20)}
+    .service-card:nth-child(1)::after{background-image:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1600&q=94')}
+    .service-card:nth-child(2)::after{background-image:url('https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=1600&q=94')}
+    .service-card:nth-child(3)::after{background-image:url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1600&q=94')}
+    .service-card:nth-child(4)::after{background-image:url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1600&q=94')}
+    .service-card .tag{align-self:flex-start;background:rgba(216,239,83,.92);color:#163120;font-weight:900;font-size:11px;padding:7px 10px;border-radius:999px;margin-bottom:auto}
+    .service-card h3{font-size:27px;letter-spacing:-.04em;margin-bottom:10px}
+    .service-card p{color:rgba(255,255,255,.76);font-size:14px;margin:0}
+
+    /* Projects */
+    .projects{background:var(--green-900);color:#fff;overflow:hidden}
+    .projects .kicker{color:var(--lime)}
+    .projects .section-head p{color:rgba(255,255,255,.66)}
+    .project-grid{display:grid;grid-template-columns:1.2fr .8fr .8fr;gap:18px}
+    .project{background:#0e3b2c;border:1px solid rgba(255,255,255,.10);border-radius:28px;overflow:hidden;transition:transform .35s ease,border-color .35s ease}
+    .project:hover{transform:translateY(-7px);border-color:rgba(216,239,83,.35)}
+    .project-media{height:240px;background:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1800&q=94') center/cover}
+    .project:nth-child(2) .project-media{background-image:url('https://images.unsplash.com/photo-1508514177221-188b1cf16e9d?auto=format&fit=crop&w=1600&q=94')}
+    .project:nth-child(3) .project-media{background-image:url('https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1600&q=94')}
+    .project-body{padding:24px}
+    .project-body small{color:var(--lime);font-weight:900;text-transform:uppercase;letter-spacing:.12em}
+    .project-body h3{font-size:24px;margin:9px 0 16px}
+    .project-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .project-meta div{padding:12px;border-radius:16px;background:rgba(255,255,255,.05)}
+    .project-meta b{display:block;font-size:18px}
+    .project-meta span{font-size:11px;color:rgba(255,255,255,.55)}
+
+    /* Process */
+    .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:20px}
+    .step{padding:28px;border:1px solid var(--line);border-radius:24px;background:#fff;position:relative;overflow:hidden;transition:transform .3s ease,box-shadow .3s ease,border-color .3s ease}
+    .step:hover{transform:translateY(-5px);box-shadow:0 18px 45px rgba(7,35,25,.07);border-color:rgba(25,183,107,.24)}
+    .step::before{content:attr(data-step);position:absolute;right:14px;top:-12px;font-size:82px;font-weight:950;letter-spacing:-.08em;color:#eff6f1}
+    .step-icon{width:52px;height:52px;border-radius:16px;background:#e6f7ed;display:grid;place-items:center;margin-bottom:38px;color:var(--green-dark);font-weight:900;font-size:20px}
+    .step h3{font-size:20px;margin-bottom:9px}
+    .step p{font-size:14px;color:var(--muted);margin-bottom:0}
+
+    /* Benefits */
+    .benefits{background:var(--soft)}
+    .benefit-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .benefit{background:#fff;border:1px solid var(--line);border-radius:24px;padding:26px;transition:.2s}
+    .benefit:hover{transform:translateY(-4px);box-shadow:0 18px 50px rgba(7,35,25,.08)}
+    .benefit .ico{font-size:28px;margin-bottom:20px}
+    .benefit h3{font-size:20px;margin-bottom:8px}
+    .benefit p{font-size:14px;color:var(--muted);margin:0}
+
+    /* Testimonials */
+    .testimonials{overflow:hidden}
+    .quote-wrap{display:grid;grid-template-columns:.75fr 1.25fr;gap:40px;align-items:center}
+    .quote-image{min-height:440px;border-radius:30px;background:url('https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1800&q=94') center/cover;position:relative;overflow:hidden}
+    .quote-image::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent,rgba(4,28,20,.48))}
+    .quote-panel{padding:18px 0;transition:opacity .28s ease,transform .28s ease}
+    .quote-mark{font-size:80px;line-height:.7;color:#cfeada;font-family:Georgia,serif;margin-bottom:18px}
+    .quote{font-size:31px;line-height:1.28;letter-spacing:-.035em;font-weight:780;margin-bottom:26px}
+    .person{display:flex;align-items:center;gap:14px}
+    .avatar{width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--green),var(--lime));display:grid;place-items:center;color:#09271b;font-weight:950}
+    .person b{display:block}
+    .person span{display:block;font-size:13px;color:var(--muted)}
+    .dots{display:flex;gap:8px;margin-top:28px}
+    .dot{width:10px;height:10px;border-radius:99px;border:0;background:#d9e2dd;cursor:pointer;padding:0}
+    .dot.active{width:28px;background:var(--green)}
+
+    /* CTA simulator */
+    .simulator{padding-top:35px}
+    .sim-card{background:linear-gradient(135deg,#0b3325,#0f5d3f);border-radius:36px;padding:54px;color:#fff;display:grid;grid-template-columns:1fr .9fr;gap:45px;align-items:center;position:relative;overflow:hidden}
+    .sim-card::after{content:"";position:absolute;width:430px;height:430px;border-radius:50%;right:-140px;top:-180px;background:radial-gradient(circle,rgba(216,239,83,.34),rgba(216,239,83,0) 65%)}
+    .sim-card h2{font-size:48px;margin-bottom:15px;position:relative;z-index:1}
+    .sim-card p{color:rgba(255,255,255,.72);max-width:620px;position:relative;z-index:1}
+    .sim-box{background:#fff;border-radius:24px;padding:24px;color:var(--ink);position:relative;z-index:1;box-shadow:0 24px 70px rgba(0,0,0,.22)}
+    .sim-box h3{font-size:22px;margin-bottom:18px}
+    .field{display:grid;gap:7px;margin-bottom:13px}
+    .field label{font-size:12px;font-weight:850;color:#526159}
+    .field input,.field select{border:1px solid var(--line);border-radius:14px;padding:13px 14px;outline:none;background:#fbfdfb}
+    .field input:focus,.field select:focus{border-color:var(--green);box-shadow:0 0 0 4px rgba(25,183,107,.10)}
+    .sim-box .btn{width:100%;border-radius:14px;margin-top:4px}
+    .result{display:none;margin-top:16px;background:#edf8f1;border-radius:16px;padding:16px}
+    .result.show{display:block}
+    .result strong{display:block;font-size:26px;color:var(--green-dark);letter-spacing:-.04em}
+    .result small{color:var(--muted)}
+
+    /* Footer */
+    footer{margin-top:110px;background:#061f17;color:#fff;padding:70px 0 24px}
+    .footer-grid{display:grid;grid-template-columns:1.3fr .7fr .7fr 1fr;gap:45px}
+    .footer-grid p{color:rgba(255,255,255,.58);font-size:14px;max-width:350px}
+    .footer-title{font-size:12px;text-transform:uppercase;letter-spacing:.13em;color:#9ec5ad;font-weight:900;margin-bottom:16px}
+    .footer-links{display:grid;gap:10px;color:#edf8f1;font-size:14px}
+    .footer-links a:hover{color:var(--lime)}
+    .footer-bottom{border-top:1px solid rgba(255,255,255,.09);margin-top:46px;padding-top:22px;display:flex;justify-content:space-between;gap:20px;color:rgba(255,255,255,.45);font-size:12px}
+    .footer-brand .brand{color:#fff;margin-bottom:16px;align-items:flex-start;flex-direction:column}
+    .footer-brand .brand strong{color:var(--lime)}
+    .footer-brand .brand-logo-wrap{background:#fff;border-style:solid;border-color:rgba(255,255,255,.18);width:170px;height:62px}
+    .footer-socials{display:flex;gap:10px;margin-top:18px}
+    .footer-socials .social-btn{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.13);color:#fff}
+
+    .floating-socials{position:fixed;right:22px;bottom:22px;z-index:40;display:grid;gap:10px}
+    .floating-social{
+      width:56px;height:56px;border-radius:18px;display:grid;place-items:center;color:#fff;
+      box-shadow:0 16px 36px rgba(7,35,25,.22);transition:.2s ease;position:relative
+    }
+    .floating-social:hover{transform:translateY(-3px) scale(1.03)}
+    .floating-social svg{width:24px;height:24px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+    .floating-social.whatsapp{background:#25D366}
+    .floating-social.instagram{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045)}
+    .floating-social.email{background:var(--green-dark)}
+    .floating-social::before{
+      content:attr(data-label);position:absolute;right:66px;white-space:nowrap;background:#082b20;color:#fff;
+      padding:7px 10px;border-radius:9px;font-size:12px;font-weight:800;opacity:0;pointer-events:none;transform:translateX(6px);transition:.2s
+    }
+    .floating-social:hover::before{opacity:1;transform:translateX(0)}
+
+    /* Toast */
+    .toast{position:fixed;left:50%;bottom:25px;transform:translate(-50%,30px);opacity:0;pointer-events:none;background:#0b2d21;color:#fff;padding:13px 18px;border-radius:999px;z-index:100;font-weight:800;font-size:13px;transition:.25s}
+    .toast.show{opacity:1;transform:translate(-50%,0)}
+
+    @media (max-width: 980px){
+      .topbar{display:none}
+      .nav-links{display:none;position:absolute;left:20px;right:20px;top:72px;background:rgba(255,255,255,.98);padding:18px;border-radius:22px;box-shadow:var(--shadow);flex-direction:column;align-items:stretch;animation:menuDrop .28s ease both;border:1px solid rgba(16,34,27,.06)}
+      @keyframes menuDrop{from{opacity:0;transform:translateY(-10px) scale(.98)}to{opacity:1;transform:none}}
+      .nav-links.open{display:flex}
+      .menu-btn{display:block}
+      .nav-links a{padding:10px 8px}
+      .nav-links .btn{margin-top:4px;padding:14px 16px}
+      .social-links{display:none}
+      .hero .container{grid-template-columns:1fr}
+      .hero-card{display:none}
+      .stats{grid-template-columns:1fr 1fr}
+      .stat:nth-child(2){border-right:0}
+      .stat:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.11)}
+      .about-grid,.quote-wrap,.sim-card{grid-template-columns:1fr}
+      .services-grid{grid-template-columns:1fr 1fr}
+      .project-grid{grid-template-columns:1fr 1fr}
+      .project:first-child{grid-column:1/-1}
+      .process-grid{grid-template-columns:1fr 1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+    }
+    @media (max-width: 640px){
+      .container{width:min(calc(100% - 28px),var(--max))}
+      nav{min-height:68px}
+      .brand{font-size:20px}
+      .brand-logo-wrap{width:118px;height:46px}
+      .brand-name{display:none}
+      .brand-mark{width:38px;height:38px}
+      .hero{min-height:760px;background-position:center, 66% center}
+      .hero .container{min-height:760px;display:flex;align-items:flex-start}
+      .hero-copy{padding:74px 0 210px;width:100%}
+      h1{font-size:clamp(44px,15vw,62px);line-height:.98;margin:18px 0 20px}
+      .hero-copy p{font-size:16px;line-height:1.58;max-width:92%}
+      .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
+      .hero-actions .btn{width:100%;min-height:52px}
+      .hero-note{font-size:12px;gap:10px;flex-wrap:wrap}
+      .energy-ring{width:230px;height:230px;right:-78px;top:20%}
+      .energy-orb.one{width:110px;height:110px;right:1%;top:15%}
+      .scroll-cue{display:none}
+
+      .stats-strip{bottom:0}
+      .stat{padding:14px 10px}
+      .stat strong{font-size:19px}
+      .stat span{font-size:10px}
+      section{padding:76px 0}
+      h2{font-size:clamp(34px,11vw,46px)}
+      .section-head{margin-bottom:30px}
+      .section-head p,.lead{font-size:15px}
+      .section-head{display:block}
+      .about-grid{gap:38px}
+      .about-media{min-height:390px}
+      .photo-card{inset:0 20px 30px 0}
+      .float-card{width:190px}
+      .checks{grid-template-columns:1fr}
+      .services-grid,.project-grid,.process-grid,.benefit-grid,.footer-grid{grid-template-columns:1fr}
+      .project:first-child{grid-column:auto}
+      .service-card{min-height:310px;padding:24px}
+      .service-card h3{font-size:24px}
+      .quote-image{min-height:320px}
+      .quote{font-size:25px}
+      .sim-card{padding:24px;border-radius:28px;gap:26px}
+      .sim-card h2{font-size:36px}
+      .sim-box{padding:20px}
+      .sim-box .btn{min-height:50px}
+      .footer-bottom{flex-direction:column}
+      .floating-socials{right:auto;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:8px;padding:7px;background:rgba(6,31,23,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);border-radius:22px;box-shadow:0 16px 40px rgba(6,31,23,.28)}
+      .floating-social{width:46px;height:46px;border-radius:15px;box-shadow:none}
+      .floating-social::before{display:none}
+      footer{padding-bottom:104px}
+    }
+
+    @media (max-width: 390px){
+      .container{width:min(calc(100% - 22px),var(--max))}
+      .brand-logo-wrap{width:104px;height:43px}
+      .menu-btn{width:43px;height:43px}
+      h1{font-size:43px}
+      .hero-copy{padding-top:62px}
+      .stat strong{font-size:17px}
+      .float-card{width:168px;padding:18px}
+      .quote{font-size:23px}
+    }
+    @media (prefers-reduced-motion: reduce){
+      *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+      .reveal{opacity:1!important;transform:none!important}
+    }
+  
+/* ===== NAVBAR PADRÃO RENOOAVA - compartilhada nas 3 páginas ===== */
+.nav-shell{position:sticky!important;top:0;z-index:100;background:rgba(255,255,255,.92)!important;backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%);border-bottom:1px solid rgba(16,34,27,.07);transition:box-shadow .25s ease,background .25s ease}
+.nav-shell.scrolled{background:rgba(255,255,255,.97)!important;box-shadow:0 12px 30px rgba(7,35,25,.08)}
+.renooava-nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.renooava-nav .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em;font-size:23px;color:var(--ink);text-decoration:none;flex:0 0 auto}
+.renooava-nav .brand-logo-wrap{width:148px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px dashed rgba(13,109,71,.28);padding:6px 10px;position:relative;flex:0 0 auto}
+.renooava-nav .brand-logo{width:100%;height:100%;object-fit:contain;display:block}
+.renooava-nav .brand-logo-fallback{display:none;width:100%;height:100%;place-items:center;background:linear-gradient(135deg,var(--green),var(--lime));border-radius:10px;color:#082b20;font-size:25px}
+.renooava-nav .brand strong{color:var(--green-dark)}
+.renooava-nav .brand-name{white-space:nowrap}
+.renooava-nav .nav-links{display:flex;align-items:center;gap:24px;font-weight:750;font-size:14px;color:#2b3c35}
+.renooava-nav .nav-links a{position:relative;text-decoration:none;color:inherit}
+.renooava-nav .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:.2s}
+.renooava-nav .nav-links a:not(.btn):hover::after{transform:scaleX(1)}
+.renooava-nav .nav-links .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;padding:14px 20px;border-radius:999px;font-weight:850;cursor:pointer;transition:.22s ease;background:var(--green);color:#fff;box-shadow:0 12px 24px rgba(25,183,107,.22)}
+.renooava-nav .nav-links .btn:hover{transform:translateY(-2px);background:#13a961}
+.renooava-nav .social-links{display:flex;align-items:center;gap:8px}
+.renooava-nav .social-btn{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;border:1px solid rgba(16,34,27,.10);background:#fff;color:var(--green-dark);transition:.2s ease;box-shadow:0 8px 20px rgba(7,35,25,.05);text-decoration:none}
+.renooava-nav .social-btn i{font-size:20px;line-height:1}
+.renooava-nav .social-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(7,35,25,.10)}
+.renooava-nav .social-btn.instagram:hover{color:#c13584;border-color:rgba(193,53,132,.24)}
+.renooava-nav .social-btn.whatsapp{color:#20a85a}
+.renooava-nav .social-btn.whatsapp:hover{color:#fff;background:#25D366;border-color:#25D366}
+.renooava-nav .social-btn.email:hover{color:#fff;background:var(--green-dark);border-color:var(--green-dark)}
+.renooava-nav .menu-btn{display:none;width:46px;height:46px;border-radius:14px;border:1px solid rgba(16,34,27,.10);background:#fff;cursor:pointer;position:relative;box-shadow:0 8px 20px rgba(7,35,25,.05);padding:0}
+.renooava-nav .menu-btn span{display:block;width:20px;height:2px;background:var(--ink);margin:4px auto;border-radius:2px;transition:.25s ease}
+.renooava-nav .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.renooava-nav .menu-btn.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.renooava-nav .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media(max-width:1050px){
+  .renooava-nav .brand-name{display:none}
+  .renooava-nav .nav-links{gap:17px}
+}
+@media(max-width:900px){
+  .renooava-nav{min-height:70px}
+  .renooava-nav .brand-logo-wrap{width:122px;height:46px}
+  .renooava-nav .social-links{display:none!important}
+  .renooava-nav .menu-btn{display:block!important}
+  .renooava-nav .nav-links{display:none!important;position:absolute;left:20px;right:20px;top:72px;background:rgba(255,255,255,.99);padding:18px;border-radius:22px;box-shadow:0 24px 60px rgba(7,35,25,.14);flex-direction:column;align-items:stretch;gap:4px;border:1px solid rgba(16,34,27,.06)}
+  .renooava-nav .nav-links.open{display:flex!important}
+  .renooava-nav .nav-links a{padding:11px 10px}
+  .renooava-nav .nav-links a:not(.btn)::after{display:none}
+  .renooava-nav .nav-links .btn{margin-top:7px;padding:14px 16px}
+}
+@media(max-width:420px){
+  .renooava-nav .brand-logo-wrap{width:108px;height:44px}
+  .renooava-nav .menu-btn{width:43px;height:43px}
+}
+
+
+/* Bootstrap Icons nas redes sociais */
+.floating-social i{font-size:25px;line-height:1}.footer-socials .social-btn i{font-size:20px;line-height:1}
+</style>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+  <div class="nav-shell">
+    <nav class="container renooava-nav" aria-label="Navegação principal">
+      <a class="brand" href="index.html" aria-label="Renoova Energia - Página inicial">
+        <span class="brand-logo-wrap">
+          <img class="brand-logo" src="assets/logo-renooava.svg" alt="Logo Renoova Energia" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'" />
+          <span class="brand-logo-fallback" aria-hidden="true"><i class="bi bi-lightning-charge-fill"></i></span>
+        </span>
+        <span class="brand-name">Renoova <strong>Energia</strong></span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="index.html#sobre">Sobre</a>
+        <a href="index.html#solucoes">Soluções</a>
+        <a href="index.html#projetos">Projetos</a>
+        <a href="index.html#como-funciona">Como funciona</a>
+        <a href="contato.html">Contato</a>
+        <a class="btn btn-primary" href="simulacao.html">Simule sua economia</a>
+      </div>
+
+      <div class="social-links" aria-label="Redes sociais da Renoova Energia">
+        <a class="social-btn instagram" href="https://www.instagram.com/renoova.energia/" target="_blank" rel="noopener" aria-label="Instagram da Renoova Energia" title="Instagram">
+          <i class="bi bi-instagram" aria-hidden="true"></i>
+        </a>
+        <a class="social-btn whatsapp" href="https://wa.me/5514998861538?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Renoova%20Energia." target="_blank" rel="noopener" aria-label="WhatsApp da Renoova Energia" title="WhatsApp">
+          <i class="bi bi-whatsapp" aria-hidden="true"></i>
+        </a>
+        <a class="social-btn email" href="mailto:renoova.energia@gmail.com?subject=Contato%20pelo%20site%20Renoova%20Energia" aria-label="E-mail da Renoova Energia" title="E-mail">
+          <i class="bi bi-envelope-fill" aria-hidden="true"></i>
+        </a>
+      </div>
+
+      <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </div>
+
+  <main>
+    <header class="hero" id="inicio">
+      <div class="hero-ambient" aria-hidden="true"><span class="energy-orb one"></span><span class="energy-orb two"></span><span class="energy-ring"></span></div>
+      <div class="container">
+        <div class="hero-copy">
+          <span class="eyebrow">Energia que se renova</span>
+          <h1>Produza sua própria <span>energia.</span></h1>
+          <p>Projetos fotovoltaicos completos para reduzir custos, ganhar independência e transformar o sol em economia todos os meses.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="simulacao.html">Calcular economia</a>
+            <a class="btn btn-outline" href="#como-funciona">Entender como funciona</a>
+          </div>
+          <div class="hero-note"><b>Projeto sob medida</b><span>•</span><span>Instalação + homologação + suporte</span></div>
+        </div>
+
+        <aside class="hero-card" aria-label="Simulação rápida">
+          <span class="mini">Simulação rápida</span>
+          <h3>Quanto você pode economizar?</h3>
+          <form class="quick-form" id="quickForm">
+            <div>
+              <label for="quickBill">Valor médio da conta (R$)</label>
+              <input id="quickBill" type="number" min="100" placeholder="Ex.: 650" required />
+            </div>
+            <div>
+              <label for="quickType">Tipo de imóvel</label>
+              <select id="quickType">
+                <option>Residencial</option>
+                <option>Comercial</option>
+                <option>Rural</option>
+                <option>Industrial</option>
+              </select>
+            </div>
+            <button class="btn btn-primary" type="submit">Ver estimativa</button>
+          </form>
+        </aside>
+      </div>
+
+      <div class="stats-strip">
+        <div class="container stats">
+          <div class="stat"><strong>+10 anos</strong><span>vida útil de longo prazo</span></div>
+          <div class="stat"><strong>Até 90%</strong><span>de redução estimada na conta</span></div>
+          <div class="stat"><strong>4 etapas</strong><span>do estudo à conexão</span></div>
+          <div class="stat"><strong>100%</strong><span>projeto personalizado</span></div>
+        </div>
+      </div>
+      <div class="scroll-cue" aria-hidden="true"><span>role para explorar</span><i></i></div>
+    </header>
+
+    <section class="about" id="sobre">
+      <div class="container about-grid">
+        <div class="about-media">
+          <div class="photo-card"><img
+            src="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1800&q=95"
+            srcset="https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1200&q=95 1200w,
+                    https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=1800&q=95 1800w,
+                    https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=2400&q=95 2400w"
+            sizes="(max-width: 640px) 100vw, (max-width: 980px) 90vw, 50vw"
+            alt="Painéis solares em geração de energia limpa"
+            decoding="async"
+          /></div>
+          <div class="float-card"><strong>Sol → economia</strong><span>Transformamos radiação solar em energia útil para o seu dia a dia.</span></div>
+        </div>
+        <div class="about-copy">
+          <div class="kicker">Sobre a Renoova</div>
+          <h2>Energia limpa com projeto pensado para você.</h2>
+          <p class="lead">A Renoova Energia combina engenharia, tecnologia e atendimento próximo para entregar sistemas fotovoltaicos que façam sentido para o consumo e para a realidade de cada cliente.</p>
+          <p class="lead">Da análise inicial ao pós-venda, o objetivo é simplificar a transição para uma fonte mais econômica e sustentável, sem complicação.</p>
+          <div class="checks">
+            <div class="check"><i>✓</i> Estudo de consumo</div>
+            <div class="check"><i>✓</i> Projeto personalizado</div>
+            <div class="check"><i>✓</i> Instalação completa</div>
+            <div class="check"><i>✓</i> Acompanhamento técnico</div>
+          </div>
+          <a class="btn btn-dark" href="#solucoes">Conheça as soluções</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="solucoes">
+      <div class="container">
+        <div class="section-head">
+          <div class="copy">
+            <div class="kicker">Soluções</div>
+            <h2>Energia solar para diferentes necessidades.</h2>
+          </div>
+          <p>Escolha a aplicação e veja como a geração própria pode reduzir custos e trazer mais previsibilidade.</p>
+        </div>
+        <div class="services-grid">
+          <article class="service-card"><span class="tag">Residencial</span><h3>Sua casa produz energia</h3><p>Conforto, autonomia e economia mensal sem mudar sua rotina.</p></article>
+          <article class="service-card"><span class="tag">Empresas</span><h3>Menos custo operacional</h3><p>Energia solar para transformar despesa fixa em vantagem competitiva.</p></article>
+          <article class="service-card"><span class="tag">Agronegócio</span><h3>Energia para produzir mais</h3><p>Soluções para propriedades rurais, bombeamento, irrigação e estruturas produtivas.</p></article>
+          <article class="service-card"><span class="tag">Mobilidade</span><h3>Recarga elétrica</h3><p>Infraestrutura para carregamento de veículos elétricos em casa ou no negócio.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="projects" id="projetos">
+      <div class="container">
+        <div class="section-head">
+          <div class="copy">
+            <div class="kicker">Projetos em destaque</div>
+            <h2>Resultados que podem ser acompanhados de perto.</h2>
+          </div>
+          <p>Exemplos demonstrativos de aplicações que ajudam a visualizar o potencial de um sistema fotovoltaico.</p>
+        </div>
+        <div class="project-grid">
+          <article class="project">
+            <div class="project-media"></div>
+            <div class="project-body"><small>Residencial</small><h3>Projeto Aurora · Presidente Epitácio / SP</h3><div class="project-meta"><div><b>8,4 kWp</b><span>potência instalada</span></div><div><b>~R$ 760</b><span>economia mensal estimada</span></div></div></div>
+          </article>
+          <article class="project">
+            <div class="project-media"></div>
+            <div class="project-body"><small>Comercial</small><h3>Projeto Horizonte · SP</h3><div class="project-meta"><div><b>32 kWp</b><span>potência</span></div><div><b>~3,8 MWh</b><span>geração/mês</span></div></div></div>
+          </article>
+          <article class="project">
+            <div class="project-media"></div>
+            <div class="project-body"><small>Rural</small><h3>Projeto Campo Vivo · SP</h3><div class="project-meta"><div><b>55 kWp</b><span>potência</span></div><div><b>~6,4 MWh</b><span>geração/mês</span></div></div></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="como-funciona">
+      <div class="container">
+        <div class="section-head">
+          <div class="copy"><div class="kicker">Como funciona</div><h2>Do diagnóstico à energia gerada.</h2></div>
+          <p>Um processo simples, com acompanhamento em todas as etapas.</p>
+        </div>
+        <div class="process-grid">
+          <article class="step" data-step="01"><div class="step-icon">01</div><h3>Análise da conta</h3><p>Entendemos seu histórico de consumo e o perfil do imóvel.</p></article>
+          <article class="step" data-step="02"><div class="step-icon">02</div><h3>Projeto técnico</h3><p>Dimensionamos potência, equipamentos e posicionamento do sistema.</p></article>
+          <article class="step" data-step="03"><div class="step-icon">03</div><h3>Instalação</h3><p>Executamos a montagem e cuidamos da documentação necessária.</p></article>
+          <article class="step" data-step="04"><div class="step-icon">04</div><h3>Geração e suporte</h3><p>O sistema entra em operação e você acompanha sua produção.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="benefits">
+      <div class="container">
+        <div class="section-head">
+          <div class="copy"><div class="kicker">Por que energia solar?</div><h2>Economia hoje. Valor no longo prazo.</h2></div>
+        </div>
+        <div class="benefit-grid">
+          <article class="benefit"><div class="ico">⚡</div><h3>Independência energética</h3><p>Reduza sua exposição aos reajustes tarifários e gere parte importante do que consome.</p></article>
+          <article class="benefit"><div class="ico">🌱</div><h3>Energia renovável</h3><p>Uma fonte limpa, silenciosa e alinhada a uma operação mais sustentável.</p></article>
+          <article class="benefit"><div class="ico">📈</div><h3>Retorno financeiro</h3><p>A economia mensal ajuda a transformar o sistema em um investimento de longo prazo.</p></article>
+          <article class="benefit"><div class="ico">🛠️</div><h3>Baixa manutenção</h3><p>O sistema exige pouca intervenção e pode operar por muitos anos com acompanhamento adequado.</p></article>
+          <article class="benefit"><div class="ico">🏡</div><h3>Valorização do imóvel</h3><p>Uma infraestrutura energética moderna pode aumentar a atratividade da propriedade.</p></article>
+          <article class="benefit"><div class="ico">☀️</div><h3>Energia todos os dias</h3><p>O sistema aproveita a incidência solar para gerar eletricidade durante o período diurno.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <div class="container quote-wrap">
+        <div class="quote-image"></div>
+        <div class="quote-panel">
+          <div class="kicker">Quem escolhe a Renoova</div>
+          <div class="quote-mark">“</div>
+          <div class="quote" id="quoteText">A conta de energia deixou de ser um problema imprevisível. Hoje a gente acompanha a geração e sabe exatamente o impacto do sistema no orçamento.</div>
+          <div class="person"><div class="avatar" id="avatar">RC</div><div><b id="personName">Rafael Costa</b><span id="personRole">Cliente residencial · SP</span></div></div>
+          <div class="dots">
+            <button class="dot active" data-i="0" aria-label="Depoimento 1"></button>
+            <button class="dot" data-i="1" aria-label="Depoimento 2"></button>
+            <button class="dot" data-i="2" aria-label="Depoimento 3"></button>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="simulator" id="simulador">
+      <div class="container">
+        <div class="sim-card">
+          <div>
+            <div class="kicker" style="color:var(--lime)">Simulação solar completa</div>
+            <h2>Veja quanto sua conta pode cair com energia solar.</h2>
+            <p>Abra a calculadora completa da Renoova Energia, informe seu consumo e receba uma estimativa de economia, potência do sistema e retorno do investimento.</p>
+            <a class="btn btn-primary" href="simulacao.html">Abrir simulador completo →</a>
+          </div>
+          <div class="sim-box">
+            <h3>Uma simulação mais completa</h3>
+            <div class="field"><label>Economia estimada</label><div style="font-size:34px;font-weight:950;color:var(--green-dark)">até 90%*</div></div>
+            <div class="field"><label>Você verá</label><div style="color:var(--muted);line-height:1.75">Consumo estimado · economia mensal e anual · potência sugerida · projeção de retorno.</div></div>
+            <a class="btn btn-primary" href="simulacao.html">Quero simular agora</a>
+            <small style="display:block;margin-top:12px;color:var(--muted)">*Estimativa demonstrativa. O projeto definitivo depende de análise técnica e tarifária.</small>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="contato">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <div class="brand">
+            <span class="brand-logo-wrap"><img class="brand-logo" src="assets/logo-renooava.svg" alt="Logo Renoova Energia" /></span>
+            <span>Renoova <strong>Energia</strong></span>
+          </div>
+          <p>Projetos fotovoltaicos para quem quer gastar menos energia da rede e produzir mais do próprio futuro.</p>
+          <div class="footer-socials" aria-label="Contato e redes sociais">
+            <a class="social-btn instagram" href="https://www.instagram.com/renoova.energia/" target="_blank" rel="noopener" aria-label="Instagram" title="Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+            <a class="social-btn whatsapp" href="https://wa.me/5514998861538?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Renoova%20Energia." target="_blank" rel="noopener" aria-label="WhatsApp" title="WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+            <a class="social-btn email" href="mailto:renoova.energia@gmail.com?subject=Contato%20pelo%20site%20Renoova%20Energia" aria-label="E-mail" title="E-mail"><i class="bi bi-envelope-fill" aria-hidden="true"></i></a>
+          </div>
+        </div>
+        <div><div class="footer-title">Navegação</div><div class="footer-links"><a href="#sobre">Sobre</a><a href="#solucoes">Soluções</a><a href="#projetos">Projetos</a><a href="#como-funciona">Como funciona</a></div></div>
+        <div><div class="footer-title">Soluções</div><div class="footer-links"><a href="#solucoes">Residencial</a><a href="#solucoes">Comercial</a><a href="#solucoes">Rural</a><a href="#solucoes">Mobilidade elétrica</a></div></div>
+        <div><div class="footer-title">Contato</div><div class="footer-links"><a href="https://wa.me/5514998861538" target="_blank" rel="noopener">WhatsApp: (18) 00000-0000</a><a href="mailto:renoova.energia@gmail.com">renoova.energia@gmail.com</a><a href="https://www.instagram.com/renoova.energia/" target="_blank" rel="noopener">@renooavaenergia</a><span>Presidente Epitácio · SP</span><a href="simulacao.html">Solicitar simulação</a></div></div>
+      </div>
+      <div class="footer-bottom"><span>© 2026 Renoova Energia. Todos os direitos reservados.</span><span>Protótipo demonstrativo · dados e números ilustrativos.</span></div>
+    </div>
+  </footer>
+
+  <div class="floating-socials" aria-label="Atalhos de contato">
+    <a class="floating-social instagram" data-label="Instagram" href="https://www.instagram.com/renoova.energia/" target="_blank" rel="noopener" aria-label="Abrir Instagram"><i class="bi bi-instagram" aria-hidden="true"></i></a>
+    <a class="floating-social email" data-label="Enviar e-mail" href="mailto:renoova.energia@gmail.com?subject=Contato%20pelo%20site%20Renoova%20Energia" aria-label="Enviar e-mail"><i class="bi bi-envelope-fill" aria-hidden="true"></i></a>
+    <a class="floating-social whatsapp" data-label="Falar no WhatsApp" href="https://wa.me/5514998861538?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Renoova%20Energia%20e%20quero%20uma%20simula%C3%A7%C3%A3o." target="_blank" rel="noopener" aria-label="Falar no WhatsApp"><i class="bi bi-whatsapp" aria-hidden="true"></i></a>
+  </div>
+  <div class="toast" id="toast">Simulação calculada!</div>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    const navShell = document.querySelector('.nav-shell');
+    const progress = document.getElementById('scrollProgress');
+    const updateScrollUI = () => {
+      navShell.classList.toggle('scrolled', window.scrollY > 12);
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      progress.style.width = (max > 0 ? (window.scrollY / max) * 100 : 0) + '%';
+    };
+    window.addEventListener('scroll', updateScrollUI, {passive:true});
+    updateScrollUI();
+
+    const revealTargets = document.querySelectorAll('.section-head,.about-media,.about-copy,.service-card,.project,.step,.benefit,.quote-image,.quote-panel,.sim-card,.footer-grid');
+    revealTargets.forEach((el,i) => {
+      el.classList.add('reveal');
+      if(el.matches('.about-media,.quote-image')) el.classList.add('reveal-left');
+      if(el.matches('.about-copy,.quote-panel')) el.classList.add('reveal-right');
+      if(i % 3 === 1) el.classList.add('reveal-delay-1');
+      if(i % 3 === 2) el.classList.add('reveal-delay-2');
+    });
+    const revealObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){ entry.target.classList.add('visible'); revealObserver.unobserve(entry.target); }
+      });
+    }, {threshold:.12, rootMargin:'0px 0px -35px 0px'});
+    revealTargets.forEach(el => revealObserver.observe(el));
+
+    const testimonials = [
+      {q:'A conta de energia deixou de ser um problema imprevisível. Hoje a gente acompanha a geração e sabe exatamente o impacto do sistema no orçamento.',n:'Rafael Costa',r:'Cliente residencial · SP',a:'RC'},
+      {q:'No comércio, a economia começou a aparecer já nas primeiras faturas. O projeto foi pensado para o nosso consumo e isso fez toda a diferença.',n:'Marina Lopes',r:'Cliente comercial · SP',a:'ML'},
+      {q:'A energia solar ajudou a trazer mais previsibilidade para a propriedade. Hoje temos uma estrutura mais eficiente e preparada para crescer.',n:'João Martins',r:'Produtor rural · SP',a:'JM'}
+    ];
+    let testimonialIndex = 0;
+    const showTestimonial = (index) => {
+      testimonialIndex = index;
+      const t = testimonials[index];
+      const panel = document.querySelector('.quote-panel');
+      panel.style.opacity = '.25';
+      panel.style.transform = 'translateY(6px)';
+      setTimeout(() => {
+        document.getElementById('quoteText').textContent = t.q;
+        document.getElementById('personName').textContent = t.n;
+        document.getElementById('personRole').textContent = t.r;
+        document.getElementById('avatar').textContent = t.a;
+        document.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i === index));
+        panel.style.opacity = '1';
+        panel.style.transform = 'translateY(0)';
+      },170);
+    };
+    document.querySelectorAll('.dot').forEach(dot => dot.addEventListener('click', () => showTestimonial(Number(dot.dataset.i))));
+    setInterval(() => showTestimonial((testimonialIndex + 1) % testimonials.length), 6500);
+
+    const brl = value => value.toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+    const toast = document.getElementById('toast');
+    function showToast(msg){toast.textContent=msg;toast.classList.add('show');setTimeout(()=>toast.classList.remove('show'),2200)}
+    const TARIFA_KWH = 0.74;
+    const PERCENTUAL_COMPENSACAO = 0.90;
+
+    function calc(bill){
+      const consumptionKWh = bill / TARIFA_KWH;
+      const compensatedKWh = consumptionKWh * PERCENTUAL_COMPENSACAO;
+      const monthly = compensatedKWh * TARIFA_KWH;
+      return {
+        monthly,
+        yearly: monthly * 12,
+        consumptionKWh,
+        compensatedKWh
+      };
+    }
+
+    window.addEventListener('resize', () => {
+      if(window.innerWidth > 980){ navLinks.classList.remove('open'); menuBtn.classList.remove('active'); }
+    });
+
+    document.getElementById('quickForm').addEventListener('submit', e => {
+      e.preventDefault();
+      const bill = Number(document.getElementById('quickBill').value || 0);
+      if(bill < 100) return showToast('Informe uma conta a partir de R$ 100.');
+      const type = document.getElementById('quickType').value;
+      const params = new URLSearchParams({conta:String(bill), tipo:type});
+      window.location.href = 'simulacao.html?' + params.toString();
+    });
+  </script>
+
+<script id="sharedNavbarScript">
+(function(){
+  const menuBtn=document.getElementById('menuBtn');
+  const navLinks=document.getElementById('navLinks');
+  const navShell=document.querySelector('.nav-shell');
+  if(menuBtn && navLinks){
+    const closeMenu=()=>{navLinks.classList.remove('open');menuBtn.classList.remove('active');menuBtn.setAttribute('aria-expanded','false')};
+    menuBtn.addEventListener('click',()=>{
+      const open=navLinks.classList.toggle('open');
+      menuBtn.classList.toggle('active',open);
+      menuBtn.setAttribute('aria-expanded',String(open));
+    });
+    navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
+    window.addEventListener('resize',()=>{if(window.innerWidth>900)closeMenu()});
+  }
+  if(navShell){
+    const update=()=>navShell.classList.toggle('scrolled',window.scrollY>10);
+    window.addEventListener('scroll',update,{passive:true});update();
+  }
+})();
+</script>
+
+</body>
+</html>
