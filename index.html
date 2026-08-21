@@ -141,7 +141,7 @@
 
     /* Hero */
     .hero{
-      min-height:690px;
+      min-height:640px;
       color:#fff;
       position:relative;
       overflow:hidden;
@@ -161,14 +161,10 @@
     .energy-ring{position:absolute;width:330px;height:330px;right:4%;top:24%;border-radius:50%;border:1px solid rgba(216,239,83,.23);animation:spinSlow 24s linear infinite}
     .energy-ring::before,.energy-ring::after{content:"";position:absolute;border-radius:50%;border:1px dashed rgba(255,255,255,.18)}
     .energy-ring::before{inset:38px}.energy-ring::after{inset:82px}
-    .scroll-cue{position:absolute;left:50%;bottom:106px;z-index:5;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.64);font-size:10px;text-transform:uppercase;letter-spacing:.15em;font-weight:850}
-    .scroll-cue i{display:block;width:26px;height:40px;border:1px solid rgba(255,255,255,.42);border-radius:999px;position:relative}
-    .scroll-cue i::after{content:"";position:absolute;width:4px;height:7px;border-radius:99px;background:var(--lime);left:50%;top:8px;transform:translateX(-50%);animation:scrollDot 1.8s ease-in-out infinite}
     @keyframes floatOrb{0%,100%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(0,-18px,0) scale(1.04)}}
-    @keyframes spinSlow{to{transform:rotate(360deg)}}
-    @keyframes scrollDot{0%{opacity:0;transform:translate(-50%,0)}30%{opacity:1}100%{opacity:0;transform:translate(-50%,15px)}}
+    @keyframes spinSlow{to{transform:rotate(360deg)}}30%{opacity:1}100%{opacity:0;transform:translate(-50%,15px)}}
     .hero .container{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .8fr;align-items:center;min-height:690px}
-    .hero-copy{padding:78px 0 110px;max-width:700px}
+    .hero-copy{padding:78px 0 90px;max-width:700px}
     .eyebrow{display:inline-flex;align-items:center;gap:9px;font-size:13px;font-weight:900;text-transform:uppercase;letter-spacing:.16em;color:var(--lime)}
     .eyebrow::before{content:"";width:28px;height:2px;background:currentColor}
     h1,h2,h3,p{margin-top:0}
@@ -199,15 +195,11 @@
     }
     .quick-form input:focus,.quick-form select:focus{box-shadow:0 0 0 4px rgba(216,239,83,.18)}
     .quick-form .btn{width:100%;border-radius:16px}
-    .stats-strip{
-      position:absolute;left:0;right:0;bottom:0;z-index:3;
-      background:rgba(7,42,31,.88);border-top:1px solid rgba(255,255,255,.12);backdrop-filter:blur(12px)
-    }
-    .stats{display:grid;grid-template-columns:repeat(4,1fr)}
-    .stat{padding:22px 26px;border-right:1px solid rgba(255,255,255,.11)}
-    .stat:last-child{border-right:0}
-    .stat strong{display:block;font-size:26px;letter-spacing:-.04em}
-    .stat span{display:block;color:rgba(255,255,255,.66);font-size:12px;margin-top:3px}
+
+
+    .hero-transition{background:#fff;border-bottom:1px solid rgba(16,34,27,.08)}
+    .hero-transition-inner{min-height:76px;display:flex;align-items:center;justify-content:center;gap:18px;color:#50625a;font-size:12px;font-weight:800;letter-spacing:.04em;text-transform:uppercase}
+    .transition-line{width:42px;height:1px;background:rgba(25,183,107,.45)}
 
     /* Sections */
     section{padding:110px 0}
@@ -362,9 +354,6 @@
       .social-links{display:none}
       .hero .container{grid-template-columns:1fr}
       .hero-card{display:none}
-      .stats{grid-template-columns:1fr 1fr}
-      .stat:nth-child(2){border-right:0}
-      .stat:nth-child(-n+2){border-bottom:1px solid rgba(255,255,255,.11)}
       .about-grid,.quote-wrap,.sim-card{grid-template-columns:1fr}
       .services-grid{grid-template-columns:1fr 1fr}
       .project-grid{grid-template-columns:1fr 1fr}
@@ -379,9 +368,9 @@
       .brand-logo-wrap{width:118px;height:46px}
       .brand-name{display:none}
       .brand-mark{width:38px;height:38px}
-      .hero{min-height:760px;background-position:center, 66% center}
-      .hero .container{min-height:760px;display:flex;align-items:flex-start}
-      .hero-copy{padding:74px 0 210px;width:100%}
+      .hero{min-height:700px;background-position:center, 66% center}
+      .hero .container{min-height:700px;display:flex;align-items:flex-start}
+      .hero-copy{padding:74px 0 100px;width:100%}
       h1{font-size:clamp(44px,15vw,62px);line-height:.98;margin:18px 0 20px}
       .hero-copy p{font-size:16px;line-height:1.58;max-width:92%}
       .hero-actions{display:grid;grid-template-columns:1fr;gap:10px}
@@ -389,38 +378,6 @@
       .hero-note{font-size:12px;gap:10px;flex-wrap:wrap}
       .energy-ring{width:230px;height:230px;right:-78px;top:20%}
       .energy-orb.one{width:110px;height:110px;right:1%;top:15%}
-      .scroll-cue{display:none}
-
-      .stats-strip{bottom:0}
-      .stat{padding:14px 10px}
-      .stat strong{font-size:19px}
-      .stat span{font-size:10px}
-      section{padding:76px 0}
-      h2{font-size:clamp(34px,11vw,46px)}
-      .section-head{margin-bottom:30px}
-      .section-head p,.lead{font-size:15px}
-      .section-head{display:block}
-      .about-grid{gap:38px}
-      .about-media{min-height:390px}
-      .photo-card{inset:0 20px 30px 0}
-      .float-card{width:190px}
-      .checks{grid-template-columns:1fr}
-      .services-grid,.project-grid,.process-grid,.benefit-grid,.footer-grid{grid-template-columns:1fr}
-      .project:first-child{grid-column:auto}
-      .service-card{min-height:310px;padding:24px}
-      .service-card h3{font-size:24px}
-      .quote-image{min-height:320px}
-      .quote{font-size:25px}
-      .sim-card{padding:24px;border-radius:28px;gap:26px}
-      .sim-card h2{font-size:36px}
-      .sim-box{padding:20px}
-      .sim-box .btn{min-height:50px}
-      .footer-bottom{flex-direction:column}
-      .floating-socials{right:auto;left:50%;bottom:max(12px,env(safe-area-inset-bottom));transform:translateX(-50%);display:flex;gap:8px;padding:7px;background:rgba(6,31,23,.84);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,.12);border-radius:22px;box-shadow:0 16px 40px rgba(6,31,23,.28)}
-      .floating-social{width:46px;height:46px;border-radius:15px;box-shadow:none}
-      .floating-social::before{display:none}
-      footer{padding-bottom:104px}
-    }
 
     @media (max-width: 390px){
       .container{width:min(calc(100% - 22px),var(--max))}
@@ -428,7 +385,6 @@
       .menu-btn{width:43px;height:43px}
       h1{font-size:43px}
       .hero-copy{padding-top:62px}
-      .stat strong{font-size:17px}
       .float-card{width:168px;padding:18px}
       .quote{font-size:23px}
     }
@@ -440,50 +396,50 @@
 /* ===== NAVBAR PADRÃO RENOOAVA - compartilhada nas 3 páginas ===== */
 .nav-shell{position:sticky!important;top:0;z-index:100;background:rgba(255,255,255,.92)!important;backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%);border-bottom:1px solid rgba(16,34,27,.07);transition:box-shadow .25s ease,background .25s ease}
 .nav-shell.scrolled{background:rgba(255,255,255,.97)!important;box-shadow:0 12px 30px rgba(7,35,25,.08)}
-.renooava-nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.renooava-nav .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em;font-size:23px;color:var(--ink);text-decoration:none;flex:0 0 auto}
-.renooava-nav .brand-logo-wrap{width:148px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px dashed rgba(13,109,71,.28);padding:6px 10px;position:relative;flex:0 0 auto}
-.renooava-nav .brand-logo{width:100%;height:100%;object-fit:contain;display:block}
-.renooava-nav .brand-logo-fallback{display:none;width:100%;height:100%;place-items:center;background:linear-gradient(135deg,var(--green),var(--lime));border-radius:10px;color:#082b20;font-size:25px}
-.renooava-nav .brand strong{color:var(--green-dark)}
-.renooava-nav .brand-name{white-space:nowrap}
-.renooava-nav .nav-links{display:flex;align-items:center;gap:24px;font-weight:750;font-size:14px;color:#2b3c35}
-.renooava-nav .nav-links a{position:relative;text-decoration:none;color:inherit}
-.renooava-nav .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:.2s}
-.renooava-nav .nav-links a:not(.btn):hover::after{transform:scaleX(1)}
-.renooava-nav .nav-links .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;padding:14px 20px;border-radius:999px;font-weight:850;cursor:pointer;transition:.22s ease;background:var(--green);color:#fff;box-shadow:0 12px 24px rgba(25,183,107,.22)}
-.renooava-nav .nav-links .btn:hover{transform:translateY(-2px);background:#13a961}
-.renooava-nav .social-links{display:flex;align-items:center;gap:8px}
-.renooava-nav .social-btn{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;border:1px solid rgba(16,34,27,.10);background:#fff;color:var(--green-dark);transition:.2s ease;box-shadow:0 8px 20px rgba(7,35,25,.05);text-decoration:none}
-.renooava-nav .social-btn i{font-size:20px;line-height:1}
-.renooava-nav .social-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(7,35,25,.10)}
-.renooava-nav .social-btn.instagram:hover{color:#c13584;border-color:rgba(193,53,132,.24)}
-.renooava-nav .social-btn.whatsapp{color:#20a85a}
-.renooava-nav .social-btn.whatsapp:hover{color:#fff;background:#25D366;border-color:#25D366}
-.renooava-nav .social-btn.email:hover{color:#fff;background:var(--green-dark);border-color:var(--green-dark)}
-.renooava-nav .menu-btn{display:none;width:46px;height:46px;border-radius:14px;border:1px solid rgba(16,34,27,.10);background:#fff;cursor:pointer;position:relative;box-shadow:0 8px 20px rgba(7,35,25,.05);padding:0}
-.renooava-nav .menu-btn span{display:block;width:20px;height:2px;background:var(--ink);margin:4px auto;border-radius:2px;transition:.25s ease}
-.renooava-nav .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.renooava-nav .menu-btn.active span:nth-child(2){opacity:0;transform:scaleX(0)}
-.renooava-nav .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.renoova-nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.renoova-nav .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em;font-size:23px;color:var(--ink);text-decoration:none;flex:0 0 auto}
+.renoova-nav .brand-logo-wrap{width:148px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px dashed rgba(13,109,71,.28);padding:6px 10px;position:relative;flex:0 0 auto}
+.renoova-nav .brand-logo{width:100%;height:100%;object-fit:contain;display:block}
+.renoova-nav .brand-logo-fallback{display:none;width:100%;height:100%;place-items:center;background:linear-gradient(135deg,var(--green),var(--lime));border-radius:10px;color:#082b20;font-size:25px}
+.renoova-nav .brand strong{color:var(--green-dark)}
+.renoova-nav .brand-name{white-space:nowrap}
+.renoova-nav .nav-links{display:flex;align-items:center;gap:24px;font-weight:750;font-size:14px;color:#2b3c35}
+.renoova-nav .nav-links a{position:relative;text-decoration:none;color:inherit}
+.renoova-nav .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:.2s}
+.renoova-nav .nav-links a:not(.btn):hover::after{transform:scaleX(1)}
+.renoova-nav .nav-links .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;padding:14px 20px;border-radius:999px;font-weight:850;cursor:pointer;transition:.22s ease;background:var(--green);color:#fff;box-shadow:0 12px 24px rgba(25,183,107,.22)}
+.renoova-nav .nav-links .btn:hover{transform:translateY(-2px);background:#13a961}
+.renoova-nav .social-links{display:flex;align-items:center;gap:8px}
+.renoova-nav .social-btn{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;border:1px solid rgba(16,34,27,.10);background:#fff;color:var(--green-dark);transition:.2s ease;box-shadow:0 8px 20px rgba(7,35,25,.05);text-decoration:none}
+.renoova-nav .social-btn i{font-size:20px;line-height:1}
+.renoova-nav .social-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(7,35,25,.10)}
+.renoova-nav .social-btn.instagram:hover{color:#c13584;border-color:rgba(193,53,132,.24)}
+.renoova-nav .social-btn.whatsapp{color:#20a85a}
+.renoova-nav .social-btn.whatsapp:hover{color:#fff;background:#25D366;border-color:#25D366}
+.renoova-nav .social-btn.email:hover{color:#fff;background:var(--green-dark);border-color:var(--green-dark)}
+.renoova-nav .menu-btn{display:none;width:46px;height:46px;border-radius:14px;border:1px solid rgba(16,34,27,.10);background:#fff;cursor:pointer;position:relative;box-shadow:0 8px 20px rgba(7,35,25,.05);padding:0}
+.renoova-nav .menu-btn span{display:block;width:20px;height:2px;background:var(--ink);margin:4px auto;border-radius:2px;transition:.25s ease}
+.renoova-nav .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.renoova-nav .menu-btn.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.renoova-nav .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 @media(max-width:1050px){
-  .renooava-nav .brand-name{display:none}
-  .renooava-nav .nav-links{gap:17px}
+  .renoova-nav .brand-name{display:none}
+  .renoova-nav .nav-links{gap:17px}
 }
 @media(max-width:900px){
-  .renooava-nav{min-height:70px}
-  .renooava-nav .brand-logo-wrap{width:122px;height:46px}
-  .renooava-nav .social-links{display:none!important}
-  .renooava-nav .menu-btn{display:block!important}
-  .renooava-nav .nav-links{display:none!important;position:absolute;left:20px;right:20px;top:72px;background:rgba(255,255,255,.99);padding:18px;border-radius:22px;box-shadow:0 24px 60px rgba(7,35,25,.14);flex-direction:column;align-items:stretch;gap:4px;border:1px solid rgba(16,34,27,.06)}
-  .renooava-nav .nav-links.open{display:flex!important}
-  .renooava-nav .nav-links a{padding:11px 10px}
-  .renooava-nav .nav-links a:not(.btn)::after{display:none}
-  .renooava-nav .nav-links .btn{margin-top:7px;padding:14px 16px}
+  .renoova-nav{min-height:70px}
+  .renoova-nav .brand-logo-wrap{width:122px;height:46px}
+  .renoova-nav .social-links{display:none!important}
+  .renoova-nav .menu-btn{display:block!important}
+  .renoova-nav .nav-links{display:none!important;position:absolute;left:20px;right:20px;top:72px;background:rgba(255,255,255,.99);padding:18px;border-radius:22px;box-shadow:0 24px 60px rgba(7,35,25,.14);flex-direction:column;align-items:stretch;gap:4px;border:1px solid rgba(16,34,27,.06)}
+  .renoova-nav .nav-links.open{display:flex!important}
+  .renoova-nav .nav-links a{padding:11px 10px}
+  .renoova-nav .nav-links a:not(.btn)::after{display:none}
+  .renoova-nav .nav-links .btn{margin-top:7px;padding:14px 16px}
 }
 @media(max-width:420px){
-  .renooava-nav .brand-logo-wrap{width:108px;height:44px}
-  .renooava-nav .menu-btn{width:43px;height:43px}
+  .renoova-nav .brand-logo-wrap{width:108px;height:44px}
+  .renoova-nav .menu-btn{width:43px;height:43px}
 }
 
 
@@ -495,10 +451,10 @@
 <body>
   <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
   <div class="nav-shell">
-    <nav class="container renooava-nav" aria-label="Navegação principal">
+    <nav class="container renoova-nav" aria-label="Navegação principal">
       <a class="brand" href="index.html" aria-label="Renoova Energia - Página inicial">
         <span class="brand-logo-wrap">
-          <img class="brand-logo" src="assets/logo-renooava.svg" alt="Logo Renoova Energia" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'" />
+          <img class="brand-logo" src="assets/logo-renoova.svg" alt="Logo Renoova Energia" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'" />
           <span class="brand-logo-fallback" aria-hidden="true"><i class="bi bi-lightning-charge-fill"></i></span>
         </span>
         <span class="brand-name">Renoova <strong>Energia</strong></span>
@@ -567,17 +523,15 @@
           </form>
         </aside>
       </div>
-
-      <div class="stats-strip">
-        <div class="container stats">
-          <div class="stat"><strong>+10 anos</strong><span>vida útil de longo prazo</span></div>
-          <div class="stat"><strong>Até 90%</strong><span>de redução estimada na conta</span></div>
-          <div class="stat"><strong>4 etapas</strong><span>do estudo à conexão</span></div>
-          <div class="stat"><strong>100%</strong><span>projeto personalizado</span></div>
-        </div>
-      </div>
-      <div class="scroll-cue" aria-hidden="true"><span>role para explorar</span><i></i></div>
     </header>
+
+    <div class="hero-transition" aria-hidden="true">
+      <div class="container hero-transition-inner">
+        <span>Energia solar pensada para a sua realidade</span>
+        <span class="transition-line"></span>
+        <span>Projeto • Instalação • Suporte</span>
+      </div>
+    </div>
 
     <section class="about" id="sobre">
       <div class="container about-grid">
@@ -726,7 +680,7 @@
       <div class="footer-grid">
         <div class="footer-brand">
           <div class="brand">
-            <span class="brand-logo-wrap"><img class="brand-logo" src="assets/logo-renooava.svg" alt="Logo Renoova Energia" /></span>
+            <span class="brand-logo-wrap"><img class="brand-logo" src="assets/logo-renoova.svg" alt="Logo Renoova Energia" /></span>
             <span>Renoova <strong>Energia</strong></span>
           </div>
           <p>Projetos fotovoltaicos para quem quer gastar menos energia da rede e produzir mais do próprio futuro.</p>
