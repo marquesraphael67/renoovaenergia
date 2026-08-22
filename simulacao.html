@@ -19,51 +19,124 @@
 /* ===== NAVBAR PADRÃO RENOOAVA - compartilhada nas 3 páginas ===== */
 .nav-shell{position:sticky!important;top:0;z-index:100;background:rgba(255,255,255,.92)!important;backdrop-filter:blur(18px) saturate(145%);-webkit-backdrop-filter:blur(18px) saturate(145%);border-bottom:1px solid rgba(16,34,27,.07);transition:box-shadow .25s ease,background .25s ease}
 .nav-shell.scrolled{background:rgba(255,255,255,.97)!important;box-shadow:0 12px 30px rgba(7,35,25,.08)}
-.renooava-nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.renooava-nav .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em;font-size:23px;color:var(--ink);text-decoration:none;flex:0 0 auto}
-.renooava-nav .brand-logo-wrap{width:148px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px dashed rgba(13,109,71,.28);padding:6px 10px;position:relative;flex:0 0 auto}
-.renooava-nav .brand-logo{width:100%;height:100%;object-fit:contain;display:block}
-.renooava-nav .brand-logo-fallback{display:none;width:100%;height:100%;place-items:center;background:linear-gradient(135deg,var(--green),var(--lime));border-radius:10px;color:#082b20;font-size:25px}
-.renooava-nav .brand strong{color:var(--green-dark)}
-.renooava-nav .brand-name{white-space:nowrap}
-.renooava-nav .nav-links{display:flex;align-items:center;gap:24px;font-weight:750;font-size:14px;color:#2b3c35}
-.renooava-nav .nav-links a{position:relative;text-decoration:none;color:inherit}
-.renooava-nav .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:.2s}
-.renooava-nav .nav-links a:not(.btn):hover::after{transform:scaleX(1)}
-.renooava-nav .nav-links .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;padding:14px 20px;border-radius:999px;font-weight:850;cursor:pointer;transition:.22s ease;background:var(--green);color:#fff;box-shadow:0 12px 24px rgba(25,183,107,.22)}
-.renooava-nav .nav-links .btn:hover{transform:translateY(-2px);background:#13a961}
-.renooava-nav .social-links{display:flex;align-items:center;gap:8px}
-.renooava-nav .social-btn{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;border:1px solid rgba(16,34,27,.10);background:#fff;color:var(--green-dark);transition:.2s ease;box-shadow:0 8px 20px rgba(7,35,25,.05);text-decoration:none}
-.renooava-nav .social-btn i{font-size:20px;line-height:1}
-.renooava-nav .social-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(7,35,25,.10)}
-.renooava-nav .social-btn.instagram:hover{color:#c13584;border-color:rgba(193,53,132,.24)}
-.renooava-nav .social-btn.whatsapp{color:#20a85a}
-.renooava-nav .social-btn.whatsapp:hover{color:#fff;background:#25D366;border-color:#25D366}
-.renooava-nav .social-btn.email:hover{color:#fff;background:var(--green-dark);border-color:var(--green-dark)}
-.renooava-nav .menu-btn{display:none;width:46px;height:46px;border-radius:14px;border:1px solid rgba(16,34,27,.10);background:#fff;cursor:pointer;position:relative;box-shadow:0 8px 20px rgba(7,35,25,.05);padding:0}
-.renooava-nav .menu-btn span{display:block;width:20px;height:2px;background:var(--ink);margin:4px auto;border-radius:2px;transition:.25s ease}
-.renooava-nav .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
-.renooava-nav .menu-btn.active span:nth-child(2){opacity:0;transform:scaleX(0)}
-.renooava-nav .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+.renoova-nav{min-height:78px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.renoova-nav .brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:-.04em;font-size:23px;color:var(--ink);text-decoration:none;flex:0 0 auto}
+.renoova-nav .brand-logo-wrap{width:148px;height:52px;border-radius:14px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff;border:1px dashed rgba(13,109,71,.28);padding:6px 10px;position:relative;flex:0 0 auto}
+.renoova-nav .brand-logo{width:100%;height:100%;object-fit:contain;display:block}
+.renoova-nav .brand-logo-fallback{display:none;width:100%;height:100%;place-items:center;background:linear-gradient(135deg,var(--green),var(--lime));border-radius:10px;color:#082b20;font-size:25px}
+.renoova-nav .brand strong{color:var(--green-dark)}
+.renoova-nav .brand-name{white-space:nowrap}
+.renoova-nav .nav-links{display:flex;align-items:center;gap:24px;font-weight:750;font-size:14px;color:#2b3c35}
+.renoova-nav .nav-links a{position:relative;text-decoration:none;color:inherit}
+.renoova-nav .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:.2s}
+.renoova-nav .nav-links a:not(.btn):hover::after{transform:scaleX(1)}
+.renoova-nav .nav-links .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;border:0;padding:14px 20px;border-radius:999px;font-weight:850;cursor:pointer;transition:.22s ease;background:var(--green);color:#fff;box-shadow:0 12px 24px rgba(25,183,107,.22)}
+.renoova-nav .nav-links .btn:hover{transform:translateY(-2px);background:#13a961}
+.renoova-nav .social-links{display:flex;align-items:center;gap:8px}
+.renoova-nav .social-btn{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;border:1px solid rgba(16,34,27,.10);background:#fff;color:var(--green-dark);transition:.2s ease;box-shadow:0 8px 20px rgba(7,35,25,.05);text-decoration:none}
+.renoova-nav .social-btn i{font-size:20px;line-height:1}
+.renoova-nav .social-btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(7,35,25,.10)}
+.renoova-nav .social-btn.instagram:hover{color:#c13584;border-color:rgba(193,53,132,.24)}
+.renoova-nav .social-btn.whatsapp{color:#20a85a}
+.renoova-nav .social-btn.whatsapp:hover{color:#fff;background:#25D366;border-color:#25D366}
+.renoova-nav .social-btn.email:hover{color:#fff;background:var(--green-dark);border-color:var(--green-dark)}
+.renoova-nav .menu-btn{display:none;width:46px;height:46px;border-radius:14px;border:1px solid rgba(16,34,27,.10);background:#fff;cursor:pointer;position:relative;box-shadow:0 8px 20px rgba(7,35,25,.05);padding:0}
+.renoova-nav .menu-btn span{display:block;width:20px;height:2px;background:var(--ink);margin:4px auto;border-radius:2px;transition:.25s ease}
+.renoova-nav .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.renoova-nav .menu-btn.active span:nth-child(2){opacity:0;transform:scaleX(0)}
+.renoova-nav .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
 @media(max-width:1050px){
-  .renooava-nav .brand-name{display:none}
-  .renooava-nav .nav-links{gap:17px}
+  .renoova-nav .brand-name{display:none}
+  .renoova-nav .nav-links{gap:17px}
 }
 @media(max-width:900px){
-  .renooava-nav{min-height:70px}
-  .renooava-nav .brand-logo-wrap{width:122px;height:46px}
-  .renooava-nav .social-links{display:none!important}
-  .renooava-nav .menu-btn{display:block!important}
-  .renooava-nav .nav-links{display:none!important;position:absolute;left:20px;right:20px;top:72px;background:rgba(255,255,255,.99);padding:18px;border-radius:22px;box-shadow:0 24px 60px rgba(7,35,25,.14);flex-direction:column;align-items:stretch;gap:4px;border:1px solid rgba(16,34,27,.06)}
-  .renooava-nav .nav-links.open{display:flex!important}
-  .renooava-nav .nav-links a{padding:11px 10px}
-  .renooava-nav .nav-links a:not(.btn)::after{display:none}
-  .renooava-nav .nav-links .btn{margin-top:7px;padding:14px 16px}
+  .renoova-nav{min-height:70px}
+  .renoova-nav .brand-logo-wrap{width:122px;height:46px}
+  .renoova-nav .social-links{display:none!important}
+  .renoova-nav .menu-btn{display:block!important}
+  .renoova-nav .nav-links{display:none!important;position:absolute;left:20px;right:20px;top:72px;background:rgba(255,255,255,.99);padding:18px;border-radius:22px;box-shadow:0 24px 60px rgba(7,35,25,.14);flex-direction:column;align-items:stretch;gap:4px;border:1px solid rgba(16,34,27,.06)}
+  .renoova-nav .nav-links.open{display:flex!important}
+  .renoova-nav .nav-links a{padding:11px 10px}
+  .renoova-nav .nav-links a:not(.btn)::after{display:none}
+  .renoova-nav .nav-links .btn{margin-top:7px;padding:14px 16px}
 }
 @media(max-width:420px){
-  .renooava-nav .brand-logo-wrap{width:108px;height:44px}
-  .renooava-nav .menu-btn{width:43px;height:43px}
+  .renoova-nav .brand-logo-wrap{width:108px;height:44px}
+  .renoova-nav .menu-btn{width:43px;height:43px}
 }
+
+
+    .brand{display:flex;align-items:center;gap:0!important;font-size:23px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
+    .brand strong{color:var(--green-dark)}
+    @media(max-width:900px){nav{min-height:68px;gap:12px}.brand{font-size:20px}}
+    @media(max-width:600px){.container{width:min(calc(100% - 26px),var(--max))}.brand{font-size:19px}}
+    
+
+    @media(max-width:900px){
+      .hero .container,.result-grid,.proof-grid{grid-template-columns:1fr}
+      .hero{min-height:auto}
+      .hero-copy{padding-top:35px}
+      .hero-card{margin-bottom:25px}
+      .benefit-grid{grid-template-columns:1fr 1fr}
+      .cta-card{grid-template-columns:1fr}
+      .footer-grid{grid-template-columns:1fr 1fr}
+      .anchor-grid{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:600px){
+      .hero .container{padding:42px 0}
+      h1{font-size:43px}
+      .hero-copy p{font-size:15px}
+      .hero-card{padding:20px;border-radius:23px}
+      .form-grid{grid-template-columns:1fr}
+      .field.full{grid-column:auto}
+      .anchor-item{padding:15px 7px}
+      .anchor-item b{font-size:15px}
+      .results,.proof,.benefits,.cta{padding:65px 0}
+      .mini-stats{grid-template-columns:1fr}
+      .compare{grid-template-columns:1fr}
+      .arrow{transform:rotate(90deg);text-align:center}
+      .proof-media{min-height:330px}
+      .proof-float{width:185px}
+      .benefit-grid,.footer-grid{grid-template-columns:1fr}
+      .cta-card{padding:24px}
+      .cta-actions{display:grid}
+      .cta-actions .btn{width:100%}
+      .footer-bottom{flex-direction:column}
+    }
+    
+/* NAVBAR RENOOVA */
+.renoova-nav{min-height:78px;display:flex;align-items:center;gap:22px}
+.renoova-nav .brand-name{display:inline!important}.renoova-nav .brand{display:flex;align-items:center;flex:0 0 auto;font-size:23px;font-weight:900;letter-spacing:-.045em;white-space:nowrap}
+.renoova-nav .brand strong{color:var(--green-dark)}
+.renoova-nav .nav-links{display:flex;align-items:center;gap:24px;margin-left:auto;font-size:14px;font-weight:750;color:#2b3c35}
+.renoova-nav .nav-links a{position:relative}
+.renoova-nav .nav-links a:not(.btn)::after{content:"";position:absolute;left:0;right:0;bottom:-8px;height:2px;background:var(--green);transform:scaleX(0);transform-origin:left;transition:.2s}
+.renoova-nav .nav-links a:hover::after{transform:scaleX(1)}
+.renoova-nav .nav-right{display:flex;align-items:center;gap:10px;flex:0 0 auto}
+.renoova-nav .social-links{display:flex;align-items:center;gap:8px}
+.renoova-nav .social-btn{width:42px;height:42px;border-radius:13px;display:grid;place-items:center;border:1px solid rgba(16,34,27,.10);background:#fff;color:var(--green-dark);transition:.2s;box-shadow:0 8px 20px rgba(7,35,25,.05)}
+.renoova-nav .social-btn:hover{transform:translateY(-2px)}
+.renoova-nav .social-btn i{font-size:20px}
+.renoova-nav .nav-simulate{white-space:nowrap;padding:12px 18px}
+.renoova-nav .menu-btn{display:none;width:44px;height:44px;border-radius:13px;border:1px solid rgba(16,34,27,.10);background:#fff;cursor:pointer;padding:0}
+.renoova-nav .menu-btn span{display:block;width:19px;height:2px;background:var(--ink);margin:4px auto;border-radius:3px;transition:.25s}
+.renoova-nav .menu-btn.active span:nth-child(1){transform:translateY(6px) rotate(45deg)}
+.renoova-nav .menu-btn.active span:nth-child(2){opacity:0}
+.renoova-nav .menu-btn.active span:nth-child(3){transform:translateY(-6px) rotate(-45deg)}
+@media(max-width:1050px){.renoova-nav .nav-links{gap:16px}.renoova-nav .social-links{display:none}}
+@media(max-width:900px){
+  .renoova-nav{min-height:68px;gap:10px}
+  .renoova-nav .brand{font-size:20px}
+  .renoova-nav .nav-right{margin-left:auto;gap:8px}
+  .renoova-nav .nav-simulate{display:inline-flex;padding:10px 15px;font-size:12px}
+  .renoova-nav .menu-btn{display:block}
+  .renoova-nav .nav-links{display:none;position:absolute;left:14px;right:14px;top:74px;margin:0;padding:10px;background:rgba(255,255,255,.98);border:1px solid rgba(16,34,27,.07);border-radius:20px;box-shadow:0 24px 60px rgba(7,35,25,.15);flex-direction:column;align-items:stretch;gap:2px}
+  .renoova-nav .nav-links.open{display:flex}
+  .renoova-nav .nav-links a{padding:13px 12px;border-radius:12px}
+  .renoova-nav .nav-links a:hover{background:#f1f8f4}
+  .renoova-nav .nav-links a::after{display:none!important}
+}
+@media(max-width:430px){.renoova-nav .brand{font-size:18px}.renoova-nav .nav-simulate{padding:9px 12px;font-size:11px}.renoova-nav .menu-btn{width:42px;height:42px}}
 
 </style>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
@@ -71,41 +144,30 @@
 <body>
 
 <div class="nav-shell">
-    <nav class="container renooava-nav" aria-label="Navegação principal">
-      <a class="brand" href="index.html" aria-label="Renoova Energia - Página inicial">
-        <span class="brand-logo-wrap">
-          <img class="brand-logo" src="assets/logo-renooava.svg" alt="Logo Renoova Energia" onerror="this.style.display='none';this.nextElementSibling.style.display='grid'" />
-          <span class="brand-logo-fallback" aria-hidden="true"><i class="bi bi-lightning-charge-fill"></i></span>
-        </span>
-        <span class="brand-name">Renoova <strong>Energia</strong></span>
-      </a>
-
-      <div class="nav-links" id="navLinks">
-        <a href="index.html#sobre">Sobre</a>
-        <a href="index.html#solucoes">Soluções</a>
-        <a href="index.html#projetos">Projetos</a>
-        <a href="index.html#como-funciona">Como funciona</a>
-        <a href="contato.html">Contato</a>
-        <a class="btn btn-primary" href="simulacao.html">Simule sua economia</a>
-      </div>
-
+  <nav class="container renoova-nav" aria-label="Navegação principal">
+    <a class="brand" href="index.html" aria-label="Renoova Energia - Página inicial">
+      <span class="brand-name">Renoova <strong>Energia</strong></span>
+    </a>
+    <div class="nav-links" id="navLinks">
+      <a href="index.html#sobre">Sobre</a>
+      <a href="index.html#solucoes">Soluções</a>
+      <a href="index.html#projetos">Projetos</a>
+      <a href="index.html#como-funciona">Como funciona</a>
+      <a href="contato.html">Contato</a>
+    </div>
+    <div class="nav-right">
       <div class="social-links" aria-label="Redes sociais da Renoova Energia">
-        <a class="social-btn instagram" href="https://www.instagram.com/renoova.energia/" target="_blank" rel="noopener" aria-label="Instagram da Renoova Energia" title="Instagram">
-          <i class="bi bi-instagram" aria-hidden="true"></i>
-        </a>
-        <a class="social-btn whatsapp" href="https://wa.me/5514998861538?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Renoova%20Energia." target="_blank" rel="noopener" aria-label="WhatsApp da Renoova Energia" title="WhatsApp">
-          <i class="bi bi-whatsapp" aria-hidden="true"></i>
-        </a>
-        <a class="social-btn email" href="mailto:renoova.energia@gmail.com?subject=Contato%20pelo%20site%20Renoova%20Energia" aria-label="E-mail da Renoova Energia" title="E-mail">
-          <i class="bi bi-envelope-fill" aria-hidden="true"></i>
-        </a>
+        <a class="social-btn instagram" href="https://www.instagram.com/renoova.energia/" target="_blank" rel="noopener" aria-label="Instagram da Renoova Energia"><i class="bi bi-instagram"></i></a>
+        <a class="social-btn whatsapp" href="https://wa.me/5514998861538?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Renoova%20Energia." target="_blank" rel="noopener" aria-label="WhatsApp da Renoova Energia"><i class="bi bi-whatsapp"></i></a>
+        <a class="social-btn email" href="mailto:renoova.energia@gmail.com?subject=Contato%20pelo%20site%20Renoova%20Energia" aria-label="E-mail da Renoova Energia"><i class="bi bi-envelope-fill"></i></a>
       </div>
-
+      <a class="btn btn-primary nav-simulate" href="simulacao.html">Simular</a>
       <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="navLinks">
         <span></span><span></span><span></span>
       </button>
-    </nav>
-  </div>
+    </div>
+  </nav>
+</div>
 <main>
 <header class="hero" id="simular"><div class="container"><div class="hero-copy"><div class="eyebrow">Simulador de energia solar</div><h1>Descubra quanto você pode <span>economizar.</span></h1><p>Faça uma estimativa inicial do seu sistema fotovoltaico em menos de um minuto. Veja consumo, economia, potência sugerida e uma projeção simples de retorno.</p><div class="hero-badges"><span class="hero-badge">☀️ Energia solar</span><span class="hero-badge">📉 Economia estimada de até 90%</span><span class="hero-badge">⚡ Projeto personalizado</span></div><a class="btn btn-outline" href="#como-funciona">Entender a simulação</a></div>
 <form class="hero-card" id="solarForm"><h2>Calcule sua economia</h2><p>Preencha os dados abaixo. Você verá o resultado na própria página.</p><div class="form-grid"><div class="field full"><label for="name">Nome</label><input id="name" autocomplete="name" placeholder="Seu nome" /></div><div class="field"><label for="bill">Conta média mensal</label><input id="bill" type="number" min="100" step="1" placeholder="Ex.: 650" required /></div><div class="field"><label for="property">Tipo de imóvel</label><select id="property"><option>Residencial</option><option>Comercial</option><option>Rural</option><option>Industrial</option></select></div><div class="field"><label for="city">Cidade</label><input id="city" placeholder="Ex.: Presidente Epitácio - SP" /></div><div class="field"><label for="phase">Ligação elétrica</label><select id="phase"><option>Monofásica</option><option>Bifásica</option><option>Trifásica</option><option>Não sei informar</option></select></div><div class="field full"><label for="phone">WhatsApp</label><input id="phone" inputmode="tel" placeholder="(18) 99999-9999" /></div></div><button class="btn btn-primary submit" type="submit">Calcular minha economia →</button><p class="legal">Estimativa demonstrativa. Não constitui proposta comercial ou garantia de redução.</p></form></div></header>
@@ -115,7 +177,7 @@
 <section class="benefits"><div class="container"><div class="section-kicker">Por que simular?</div><h2 class="section-title">Visualize o impacto antes de decidir.</h2><p class="section-lead">A simulação ajuda a transformar uma conta de energia abstrata em números que fazem sentido para o seu planejamento.</p><div class="benefit-grid"><article class="benefit"><div class="ico">📉</div><h3>Economia mensal</h3><p>Veja uma projeção de quanto poderia deixar de pagar à rede.</p></article><article class="benefit"><div class="ico">☀️</div><h3>Potência sugerida</h3><p>Entenda aproximadamente o tamanho do sistema para seu consumo.</p></article><article class="benefit"><div class="ico">💰</div><h3>Retorno estimado</h3><p>Compare o investimento de referência com a economia anual.</p></article><article class="benefit"><div class="ico">🛠️</div><h3>Análise técnica</h3><p>Use o resultado como ponto de partida para um projeto real da Renoova.</p></article></div></div></section>
 <section class="cta"><div class="container"><div class="cta-card"><div><h2>Gostou da estimativa?</h2><p>Envie os dados para a equipe da Renoova Energia e solicite uma análise mais precisa da sua conta e do local de instalação.</p></div><div class="cta-actions"><a class="btn btn-dark" id="whatsappCta" href="https://wa.me/5514998861538" target="_blank" rel="noopener">Falar no WhatsApp</a><a class="btn btn-primary" href="#simular">Refazer simulação</a></div></div></div></section>
 </main>
-<footer><div class="container"><div class="footer-grid"><div><div class="brand"><span class="logo"><svg viewBox="0 0 24 24"><path d="M13 2 5 13h6l-1 9 9-13h-6l0-7Z"/></svg></span><span>Renoova <strong style="color:var(--lime)">Energia</strong></span></div><p style="margin-top:16px">Energia solar inteligente para residências, empresas e propriedades rurais.</p></div><div><div class="footer-title">Navegação</div><div class="footer-links"><a href="index.html">Página inicial</a><a href="#simular">Simulador</a><a href="#como-funciona">Como funciona</a><a href="contato.html">Contato</a></div></div><div><div class="footer-title">Contato</div><div class="footer-links"><a href="https://www.instagram.com/renoova.energia/" target="_blank" rel="noopener">@renooavaenergia</a><a href="mailto:renoova.energia@gmail.com">renoova.energia@gmail.com</a><span>Presidente Epitácio · SP</span></div></div></div><div class="footer-bottom"><span>© 2026 Renoova Energia.</span><span>*Números desta página são estimativas demonstrativas.</span></div></div></footer>
+<footer><div class="container"><div class="footer-grid"><div><div class="brand"><span>Renoova <strong style="color:var(--lime)">Energia</strong></span></div><p style="margin-top:16px">Energia solar inteligente para residências, empresas e propriedades rurais.</p></div><div><div class="footer-title">Navegação</div><div class="footer-links"><a href="index.html">Página inicial</a><a href="#simular">Simulador</a><a href="#como-funciona">Como funciona</a><a href="contato.html">Contato</a></div></div><div><div class="footer-title">Contato</div><div class="footer-links"><a href="https://www.instagram.com/renoova.energia/" target="_blank" rel="noopener">@renoovaenergia</a><a href="mailto:renoova.energia@gmail.com">renoova.energia@gmail.com</a><span>Presidente Epitácio · SP</span></div></div></div><div class="footer-bottom"><span>© 2026 Renoova Energia.</span><span>*Números desta página são estimativas demonstrativas.</span></div></div></footer>
 <div class="toast" id="toast">Simulação calculada!</div>
 <script>
 const TARIFA=0.74, COMP=0.90, PROD=135, PRECO_KWP=4000;
@@ -165,27 +227,21 @@ if(params.get('tipo')) { const s=document.getElementById('property'); if([...s.o
 if(params.get('conta') && Number(params.get('conta'))>=100) setTimeout(renderResult,350);
 </script>
 
-<script id="sharedNavbarScript">
+
+
+<script id="renoovaNavbarScript">
 (function(){
   const menuBtn=document.getElementById('menuBtn');
   const navLinks=document.getElementById('navLinks');
   const navShell=document.querySelector('.nav-shell');
-  if(menuBtn && navLinks){
-    const closeMenu=()=>{navLinks.classList.remove('open');menuBtn.classList.remove('active');menuBtn.setAttribute('aria-expanded','false')};
-    menuBtn.addEventListener('click',()=>{
-      const open=navLinks.classList.toggle('open');
-      menuBtn.classList.toggle('active',open);
-      menuBtn.setAttribute('aria-expanded',String(open));
-    });
+  const closeMenu=()=>{if(!menuBtn||!navLinks)return;navLinks.classList.remove('open');menuBtn.classList.remove('active');menuBtn.setAttribute('aria-expanded','false')};
+  if(menuBtn&&navLinks){
+    menuBtn.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuBtn.classList.toggle('active',open);menuBtn.setAttribute('aria-expanded',String(open))});
     navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',closeMenu));
-    window.addEventListener('resize',()=>{if(window.innerWidth>900)closeMenu()});
+    window.addEventListener('resize',()=>{if(innerWidth>900)closeMenu()});
   }
-  if(navShell){
-    const update=()=>navShell.classList.toggle('scrolled',window.scrollY>10);
-    window.addEventListener('scroll',update,{passive:true});update();
-  }
+  if(navShell){const update=()=>navShell.classList.toggle('scrolled',scrollY>10);addEventListener('scroll',update,{passive:true});update()}
 })();
 </script>
-
 </body>
 </html>
